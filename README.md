@@ -1,10 +1,10 @@
-# Weather MCP Server
+# Resume MCP Server
 
-Let's get a Weather MCP server up-and-running on Cloudflare Workers with Descope OAuth login!
+Let's get a Resume MCP server up-and-running on Cloudflare Workers with Descope OAuth login!
 
 ## Preview
 
-This MCP Server is deployed to Cloudflare Workers here: [https://weather-mcp-server.descope-cx.workers.dev/](https://weather-mcp-server.descope-cx.workers.dev/)
+This MCP Server is deployed to Cloudflare Workers here: [https://resume-mcp-server.descope-cx.workers.dev/](https://resume-mcp-server.descope-cx.workers.dev/)
 
 You can connect to the server using the [Cloudflare Playground](https://playground.ai.cloudflare.com/), [MCP Inspector](https://modelcontextprotocol.io/docs/tools/inspector) or any other MCP client. Be sure to include the `/sse` path in the connection URL.
 
@@ -38,10 +38,10 @@ SERVER_URL="http://localhost:8787"
 
 ```bash
 # clone the repository
-git clone https://github.com/descope/mcp-server-sse-notion.git
+git clone https://github.com/your-username/resume-mcp-from-weather.git
 
 # install dependencies
-cd mcp-server-sse-notion
+cd resume-mcp-from-weather
 pnpm i
 
 # run locally
@@ -128,7 +128,7 @@ rm -rf ~/.mcp-auth
 
 The MCP server implementation includes:
 
-- 🌤️ Weather API Integration
+- 📄 Resume Management and Retrieval
 - 🔐 OAuth 2.0/2.1 Authorization Server Metadata (RFC 8414)
 - 🔑 Dynamic Client Registration (RFC 7591)
 - 🎫 Token Revocation (RFC 7009)

@@ -1,10 +1,8 @@
 {
-	"$schema": "https://biomejs.dev/schemas/1.6.2/schema.json",
-	"organizeImports": {
-		"enabled": true
-	},
+	"$schema": "https://biomejs.dev/schemas/2.2.3/schema.json",
 	"files": {
-		"ignore": ["worker-configuration.d.ts"]
+		"ignoreUnknown": false,
+		"includes": ["**/*.ts", "**/*.js", "**/*.json"]
 	},
 	"vcs": {
 		"enabled": true,
@@ -18,7 +16,7 @@
 			"suspicious": {
 				"noExplicitAny": "off",
 				"noDebugger": "off",
-				"noConsoleLog": "off",
+				"noConsole": "off",
 				"noConfusingVoidType": "off"
 			},
 			"style": {
@@ -30,5 +28,18 @@
 		"enabled": true,
 		"indentWidth": 4,
 		"lineWidth": 100
-	}
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "double"
+		}
+	},
+	"overrides": [
+		{
+			"includes": ["worker-configuration.d.ts"],
+			"linter": {
+				"enabled": false
+			}
+		}
+	]
 }

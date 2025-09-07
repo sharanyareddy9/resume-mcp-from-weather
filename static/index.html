@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather MCP Server</title>
+    <title>Resume MCP Server</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <script>
-        const SERVER_URL = 'https://weather-mcp.descope.sh/sse';
+        const SERVER_URL = 'https://resume-mcp-server.sharanya-ch.workers.dev/sse';
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -117,7 +117,7 @@
             // Set configuration JSON
             const config = {
                 mcpServers: {
-                    weather: {
+                    resume: {
                         command: "npx",
                         args: ["-y", "mcp-remote", SERVER_URL]
                     }
@@ -128,7 +128,7 @@
             // Set Zed configuration
             const zedConfig = {
                 context_servers: {
-                    weather: {
+                    resume: {
                         command: {
                             command: "npx",
                             args: ["-y", "mcp-remote", SERVER_URL]
@@ -165,13 +165,11 @@
 <body class="font-sans leading-relaxed flex flex-col min-h-screen">
     <main class="container mx-auto px-4 pb-12 flex-grow pt-8">
         <div class="max-w-4xl mx-auto">
-            <h1 class="text-4xl font-bold font-heading text-white mb-6">🌤️ Weather MCP Server</h1>
+            <h1 class="text-4xl font-bold font-heading text-white mb-6">📄 Resume MCP Server</h1>
             <p class="text-lg text-gray-300 mb-8">A
                 <a href="https://modelcontextprotocol.com/" class="hover:text-primary">Model Context Protocol
-                    (MCP)</a> server for accessing weather data from the <a
-                    href="https://www.weather.gov/documentation/services-web-api" class="hover:text-primary">National
-                    Weather Service API</a>. This service is maintained and secured by
-                <a href="https://www.descope.com/" class="hover:text-primary">Descope</a>.
+                    (MCP)</a> server for accessing and managing resume data. This service provides structured access to professional resume information and is secured by
+                <a href="https://www.descope.com/" class="hover:text-primary">Descope</a> OAuth authentication.
             </p>
 
             <h2 class="text-2xl font-bold font-heading text-white mt-8 mb-4">Quick Start</h2>
@@ -216,71 +214,102 @@
             <h2 class="text-2xl font-bold font-heading text-white mt-8 mb-4">Available Tools</h2>
             <div class="card rounded-lg p-6 mb-6">
                 <div class="mb-6">
-                    <h3 class="text-xl font-semibold text-white mb-3">Weather Alerts</h3>
-                    <code class="bg-gray-700 px-2 py-1 rounded">get-alerts</code>
-                    <p class="mt-2 text-gray-300">Get real-time weather alerts for any US state using the <a
-                            href="https://www.weather.gov/documentation/services-web-api"
-                            class="hover:text-primary">National Weather Service API</a>. This tool provides
-                        detailed information about active weather warnings, watches, and advisories.</p>
+                    <h3 class="text-xl font-semibold text-white mb-3">Get Complete Resume</h3>
+                    <code class="bg-gray-700 px-2 py-1 rounded">getResume</code>
+                    <p class="mt-2 text-gray-300">Retrieve the complete resume data in structured JSON format. This tool provides comprehensive access to all resume sections including personal information, experience, education, skills, and projects.</p>
                     <div class="mt-3 bg-gray-700 p-4 rounded">
                         <p class="font-semibold mb-2 text-white">Parameters:</p>
                         <ul class="list-disc pl-6 space-y-1 text-gray-300">
-                            <li><code class="bg-gray-700 px-1 rounded">state</code>: Two-letter state code (e.g., "CA"
-                                for California)</li>
+                            <li>None required</li>
                         </ul>
                         <p class="mt-3 font-semibold mb-2 text-white">Returns:</p>
                         <ul class="list-disc pl-6 space-y-1 text-gray-300">
-                            <li>Event type (e.g., Flood Warning, Severe Thunderstorm Watch)</li>
-                            <li>Affected area description</li>
-                            <li>Alert severity level</li>
-                            <li>Current status</li>
-                            <li>Detailed headline information</li>
+                            <li>Personal information (name, contact details, links)</li>
+                            <li>Professional summary</li>
+                            <li>Work experience with achievements</li>
+                            <li>Education background</li>
+                            <li>Technical skills and certifications</li>
+                            <li>Project portfolio</li>
                         </ul>
                     </div>
                 </div>
 
-                <div>
-                    <h3 class="text-xl font-semibold text-white mb-3">Weather Forecast</h3>
-                    <code class="bg-gray-700 px-2 py-1 rounded">get-forecast</code>
-                    <p class="mt-2 text-gray-300">Get detailed weather forecasts for any location in the United States
-                        using latitude and
-                        longitude coordinates. This tool provides comprehensive weather information including
-                        temperature, wind conditions, and short-term forecasts from the National Weather Service.</p>
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-3">Get Resume Summary</h3>
+                    <code class="bg-gray-700 px-2 py-1 rounded">getResumeSummary</code>
+                    <p class="mt-2 text-gray-300">Get a formatted, human-readable summary of the resume with key highlights and current role information.</p>
                     <div class="mt-3 bg-gray-700 p-4 rounded">
                         <p class="font-semibold mb-2 text-white">Parameters:</p>
                         <ul class="list-disc pl-6 space-y-1 text-gray-300">
-                            <li><code class="bg-gray-700 px-1 rounded">latitude</code>: Location latitude (-90 to 90)
-                            </li>
-                            <li><code class="bg-gray-700 px-1 rounded">longitude</code>: Location longitude (-180 to
-                                180)</li>
+                            <li>None required</li>
                         </ul>
                         <p class="mt-3 font-semibold mb-2 text-white">Returns:</p>
                         <ul class="list-disc pl-6 space-y-1 text-gray-300">
-                            <li>Forecast period name (e.g., "This Afternoon", "Tonight")</li>
-                            <li>Temperature in Fahrenheit or Celsius</li>
-                            <li>Wind speed and direction</li>
-                            <li>Short-term weather forecast description</li>
+                            <li>Formatted summary with contact information</li>
+                            <li>Current role and company</li>
+                            <li>Education highlights</li>
+                            <li>Top technical skills</li>
+                            <li>Professional summary</li>
                         </ul>
-                        <p class="mt-3 text-sm text-gray-400">Note: This tool supports locations within the United
-                            States only, as provided by the National Weather Service.</p>
                     </div>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-3">Search Resume Content</h3>
+                    <code class="bg-gray-700 px-2 py-1 rounded">searchResume</code>
+                    <p class="mt-2 text-gray-300">Search through resume content by keyword to find specific experience, skills, or achievements.</p>
+                    <div class="mt-3 bg-gray-700 p-4 rounded">
+                        <p class="font-semibold mb-2 text-white">Parameters:</p>
+                        <ul class="list-disc pl-6 space-y-1 text-gray-300">
+                            <li><code class="bg-gray-700 px-1 rounded">query</code>: Search term or keyword</li>
+                        </ul>
+                        <p class="mt-3 font-semibold mb-2 text-white">Returns:</p>
+                        <ul class="list-disc pl-6 space-y-1 text-gray-300">
+                            <li>Matching experience entries</li>
+                            <li>Relevant achievements</li>
+                            <li>Technical skills matches</li>
+                            <li>Project descriptions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-3">Authentication Info</h3>
+                    <code class="bg-gray-700 px-2 py-1 rounded">getAuthInfo</code>
+                    <p class="mt-2 text-gray-300">Get current authentication status and bearer token information.</p>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Connectivity Test</h3>
+                    <code class="bg-gray-700 px-2 py-1 rounded">ping</code>
+                    <p class="mt-2 text-gray-300">Test server connectivity and verify the MCP server is responding correctly.</p>
                 </div>
             </div>
 
             <h2 class="text-2xl font-bold font-heading text-white mt-8 mb-4">Example Workflows</h2>
             <div class="card rounded-lg p-6 mb-6">
                 <div class="bg-gray-700 rounded-lg p-4 mb-4">
-                    <h4 class="text-lg font-semibold text-white mb-2">Travel Planning</h4>
-                    <p class="text-gray-300">"What's the weather forecast for San Francisco next week?"</p>
+                    <h4 class="text-lg font-semibold text-white mb-2">Job Application</h4>
+                    <p class="text-gray-300">"Get my complete resume data for the software engineer position"</p>
                 </div>
                 <div class="bg-gray-700 rounded-lg p-4 mb-4">
-                    <h4 class="text-lg font-semibold text-white mb-2">Event Planning</h4>
-                    <p class="text-gray-300">"Check weather alerts for outdoor events in New York"</p>
+                    <h4 class="text-lg font-semibold text-white mb-2">Skills Assessment</h4>
+                    <p class="text-gray-300">"Search my resume for JavaScript and React experience"</p>
                 </div>
                 <div class="bg-gray-700 rounded-lg p-4">
-                    <h4 class="text-lg font-semibold text-white mb-2">Agriculture</h4>
-                    <p class="text-gray-300">"Get weather alerts for farming regions in Iowa"</p>
+                    <h4 class="text-lg font-semibold text-white mb-2">Profile Summary</h4>
+                    <p class="text-gray-300">"Generate a formatted summary of my professional background"</p>
                 </div>
+            </div>
+
+            <h2 class="text-2xl font-bold font-heading text-white mt-8 mb-4">Authentication</h2>
+            <div class="card rounded-lg p-6 mb-6">
+                <p class="mb-4 text-gray-300">This MCP server requires OAuth authentication via Descope. To access the resume data:</p>
+                <ol class="list-decimal pl-6 space-y-2 text-gray-300">
+                    <li>Visit the <code class="bg-gray-800 px-2 py-1 rounded">/authorize</code> endpoint to initiate OAuth flow</li>
+                    <li>Complete authentication with Descope</li>
+                    <li>Use the returned bearer token to access the <code class="bg-gray-800 px-2 py-1 rounded">/sse</code> endpoint</li>
+                </ol>
             </div>
 
             <h2 class="text-2xl font-bold font-heading text-white mt-8 mb-4">Troubleshooting</h2>
@@ -289,6 +318,7 @@
                         class="bg-gray-800 px-2 py-1 rounded">mcp-remote</code>, try clearing the authentication files:
                 </p>
                 <pre><code>rm -rf ~/.mcp-auth</code></pre>
+                <p class="mt-4 text-gray-300">For 401 Unauthorized errors, ensure you have completed the OAuth authentication flow.</p>
             </div>
         </div>
     </main>

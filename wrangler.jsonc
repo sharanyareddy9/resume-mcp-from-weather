@@ -9,18 +9,12 @@
 				"ResumeMCP"
 			],
 			"tag": "v1"
-		},
-		{
-			"new_sqlite_classes": [
-				"ResumeMCPServer"
-			],
-			"tag": "v2"
 		}
 	],
 	"durable_objects": {
 		"bindings": [
 			{
-				"class_name": "ResumeMCPServer",
+				"class_name": "ResumeMCP",
 				"name": "MCP_OBJECT"
 			}
 		]
