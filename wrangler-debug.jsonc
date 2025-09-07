@@ -1,14 +1,14 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "resume-mcp-server",
-	"main": "src/index.ts",
+	"name": "resume-mcp-server-debug",
+	"main": "src/index-debug.ts",
 	"compatibility_date": "2025-03-10",
 	"migrations": [
 		{
 			"new_sqlite_classes": [
 				"ResumeMCPServer"
 			],
-			"tag": "v2"
+			"tag": "v1"
 		}
 	],
 	"durable_objects": {
@@ -22,12 +22,7 @@
 	"observability": {
 		"enabled": true
 	},
-	"assets": {
-		"directory": "./static/",
-		"binding": "ASSETS"
-	},
 	"vars": {
-		"DESCOPE_PROJECT_ID": "P3289tWRCOdyavg6C4KD0M4gNEDc",
-		"SERVER_URL": "https://resume-mcp-server.sharanya-charabuddi.workers.dev"
+		"SERVER_URL": "https://resume-mcp-server-debug.sharanya-charabuddi.workers.dev"
 	}
 }

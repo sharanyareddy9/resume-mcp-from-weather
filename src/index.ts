@@ -20,7 +20,7 @@ type Props = {
 
 type State = null;
 
-export class ResumeMCP extends McpAgent<Bindings, State, Props> {
+export class ResumeMCPServer extends McpAgent<Bindings, State, Props> {
 	server = new McpServer({
 		name: "Resume MCP Server",
 		version: "1.0.0",
@@ -267,7 +267,7 @@ app.route("/sse", new Hono().mount("/", (req, env, ctx) => {
 	ctx.props = {
 		bearerToken: authHeader,
 	};
-	return ResumeMCP.mount("/sse").fetch(req, env, ctx);
+	return ResumeMCPServer.mount("/sse").fetch(req, env, ctx);
 }));
 
 export default app;
