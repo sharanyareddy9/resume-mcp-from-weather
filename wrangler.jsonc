@@ -6,6 +6,12 @@
 	"migrations": [
 		{
 			"new_sqlite_classes": [
+				"ResumeMCP"
+			],
+			"tag": "v1"
+		},
+		{
+			"new_sqlite_classes": [
 				"ResumeMCPServer"
 			],
 			"tag": "v2"
