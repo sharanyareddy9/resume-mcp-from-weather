@@ -1,0 +1,33 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "resume-mcp-server",
+	"main": "src/index.ts",
+	"compatibility_date": "2025-03-10",
+	"migrations": [
+		{
+			"new_sqlite_classes": [
+				"ResumeMCP"
+			],
+			"tag": "v1"
+		}
+	],
+	"durable_objects": {
+		"bindings": [
+			{
+				"class_name": "ResumeMCP",
+				"name": "MCP_OBJECT"
+			}
+		]
+	},
+	"observability": {
+		"enabled": true
+	},
+	"assets": {
+		"directory": "./static/",
+		"binding": "ASSETS"
+	},
+	"vars": {
+		"DESCOPE_PROJECT_ID": "P3289tWRCOdyavg6C4KD0M4gNEDc",
+		"SERVER_URL": "https://resume-mcp-server.your-subdomain.workers.dev"
+	}
+}
