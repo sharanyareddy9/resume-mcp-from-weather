@@ -28,6 +28,7 @@
 	},
 	"vars": {
 		"DESCOPE_PROJECT_ID": "P3289tWRCOdyavg6C4KD0M4gNEDc",
-		"SERVER_URL": "https://resume-mcp-server.sharanya-charabuddi.workers.dev"
+		"SERVER_URL": "https://resume-mcp-server.sharanya-charabuddi.workers.dev",
+		"DESCOPE_MANAGEMENT_KEY": "K32OTXU5xRzbQHd1YWD2peIxcd4fWstAQYLFWlDq55MJZUZaeUTKXaAHluP69CordcWrkP1"
 	}
 }
