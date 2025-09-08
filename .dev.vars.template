@@ -1,3 +1,13 @@
-DESCOPE_PROJECT_ID="your_project_id"
-DESCOPE_MANAGEMENT_KEY="your_management_key"
-SERVER_URL="your_server_url"
+# .dev.vars.template
+# Copy this file to .dev.vars and fill in your actual values
+
+# Descope Configuration (Required)
+DESCOPE_PROJECT_ID="your_descope_project_id_here"
+DESCOPE_MANAGEMENT_KEY="your_descope_management_key_here"
+
+# Server Configuration
+SERVER_URL="http://localhost:8787"
+
+# Resume Configuration (Optional)
+# If provided, the server will use your actual resume data
+# RESUME_PDF_URL="https://drive.google.com/file/d/your-pdf-file-id/view"

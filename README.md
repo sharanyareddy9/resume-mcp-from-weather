@@ -1,113 +1,82 @@
 # Resume MCP Server
 
-Let's get a Resume MCP server up-and-running on Cloudflare Workers with Descope OAuth login!
+A configurable [Model Context Protocol (MCP)](https://modelcontextprotocol.com/) server for accessing resume data, built on Cloudflare Workers with Descope OAuth authentication.
 
-## Preview
+## 🚀 Quick Start
 
-This MCP Server is deployed to Cloudflare Workers here: [https://resume-mcp-server.descope-cx.workers.dev/](https://resume-mcp-server.descope-cx.workers.dev/)
+**Want to use this with your own resume?** See the [**Setup Guide**](SETUP.md) for step-by-step instructions.
 
-You can connect to the server using the [Cloudflare Playground](https://playground.ai.cloudflare.com/), [MCP Inspector](https://modelcontextprotocol.io/docs/tools/inspector) or any other MCP client. Be sure to include the `/sse` path in the connection URL.
+## ✨ Features
 
-## Prerequisites
+- 📄 **Easy Resume Integration**: Just provide a PDF URL or edit the code directly
+- 🔐 **Secure OAuth Authentication**: Built-in Descope OAuth 2.0/2.1 flow
+- ☁️ **Serverless Deployment**: Runs on Cloudflare Workers (free tier available)
+- 🔍 **Powerful Search**: Search through your resume content by keywords
+- 🤖 **Claude Web Compatible**: Works seamlessly with Claude Web and other MCP clients
+- 🔧 **Fully Customizable**: Fork and modify for your specific needs
 
-Before you begin, ensure you have:
+## 🎯 Use Cases
 
-- A [Descope](https://www.descope.com/) account and project
-- Node.js version `18.x` or higher
-- A Cloudflare account (for deployment)
+- **AI Assistant Integration**: Let Claude access your resume data for job applications
+- **Personal Branding**: Provide structured access to your professional information
+- **Interview Preparation**: Quick access to your experience and achievements
+- **Career Management**: Searchable database of your professional history
 
-## Develop locally
+## 🏃‍♂️ Quick Setup
 
-1. Get your credentials from the Descope Console:
-   - [Project ID](https://app.descope.com/settings/project)
-   - [Management Key](https://app.descope.com/settings/company/managementkeys)
+### For Your Own Resume
+1. **Fork this repository**
+2. **Follow the [Setup Guide](SETUP.md)** - it's just 3 steps!
+3. **Deploy and connect to Claude Web**
 
-2. Create a `.dev.vars` file in your project root (this file is gitignored):
-
+### For Development/Testing
 ```bash
-# .dev.vars
-DESCOPE_PROJECT_ID="your_project_id"
-DESCOPE_MANAGEMENT_KEY="your_management_key"
-# For local development
-SERVER_URL="http://localhost:8787"
-# For production (replace with your worker URL)
-# SERVER_URL="https://mcp-server-delegated-auth-descope.your-account-name.workers.dev"
-```
-
-3. Clone and set up the repository:
-
-```bash
-# clone the repository
+# Clone the repository
 git clone https://github.com/your-username/resume-mcp-from-weather.git
-
-# install dependencies
 cd resume-mcp-from-weather
-pnpm i
 
-# run locally
-pnpm dev
+# Install dependencies
+npm install
+
+# Set up local environment (see SETUP.md for details)
+cp .dev.vars.template .dev.vars
+# Edit .dev.vars with your credentials
+
+# Run locally
+npm run dev
 ```
 
-You should be able to open [`http://localhost:8787/`](http://localhost:8787/) in your browser
+## 🧪 Testing Your Server
 
-## Connect the MCP inspector to your server
+### With MCP Inspector
+```bash
+# Start MCP Inspector
+npx @modelcontextprotocol/inspector
 
-To explore your new MCP api, you can use the [MCP Inspector](https://modelcontextprotocol.io/docs/tools/inspector).
+# Connect to your server
+# URL: http://localhost:8787/sse (local) or https://your-worker.workers.dev/sse (deployed)
+# Complete OAuth flow when prompted
+```
 
-1. Start it with `npx @modelcontextprotocol/inspector`
-2. [Within the inspector](http://localhost:5173), switch the Transport Type to `SSE` and enter `http://localhost:8787/sse` as the URL of the MCP server to connect to.
-3. Add a bearer token and click "Connect"
-4. Click "List Tools"
-5. Run the "getToken" tool, which should return the Authorization header that you set in the inspector
+### With Claude Web
+1. Add your MCP server URL in Claude Web settings
+2. Complete OAuth authentication
+3. Try commands like:
+   - "Show me my resume summary"
+   - "Search my resume for Python experience"
+   - "What's my current job title?"
 
-<div align="center">
-  <img src="img/mcp-inspector-sse-config.png" alt="MCP Inspector with the above config" width="600"/>
-</div>
-
-## Connect Claude Desktop to your local MCP server
-
-TODO: We need to support arbitrary headers to the `mcp-remote` proxy
-
-## Deploy to Cloudflare
-
-1. Set up your secrets in Cloudflare:
+## 🚀 Deployment
 
 ```bash
-wrangler secret put DESCOPE_MANAGEMENT_KEY
+# Deploy to Cloudflare Workers
+npm run deploy
+
+# Your server will be available at:
+# https://your-worker-name.your-account.workers.dev/sse
 ```
 
-2. Add the following to your `wrangler.jsonc` file:
-
-```jsonc
-{
- "vars": {
-  "DESCOPE_PROJECT_ID": "your_project_id",
-  "SERVER_URL": "your_server_url"
- }
-}
-```
-
-3. Deploy the worker:
-
-```bash
-pnpm deploy
-```
-
-## Call your newly deployed remote MCP server from a remote MCP client
-
-Just like you did above in "Develop locally", run the MCP inspector:
-
-```bash
-npx @modelcontextprotocol/inspector@latest
-```
-
-Then enter the `workers.dev` URL (ex: `worker-name.account-name.workers.dev/sse`) of your Worker in the inspector as the URL of the MCP server to connect to, and click "Connect".
-
-You've now connected to your MCP server from a remote MCP client. You can pass in a bearer token like mentioned above.
-
-## Connect Claude Desktop to your remote MCP server
-
-TODO: We need to support arbitrary headers to the `mcp-remote` proxy
+**Note**: See [SETUP.md](SETUP.md) for detailed deployment instructions including credential configuration.
 
 ## Debugging
 

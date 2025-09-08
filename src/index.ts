@@ -12,6 +12,7 @@ type Bindings = {
 	DESCOPE_MANAGEMENT_KEY: string;
 	DESCOPE_BASE_URL?: string;
 	SERVER_URL: string;
+	RESUME_PDF_URL?: string;
 };
 
 type Props = {
@@ -102,6 +103,17 @@ export class ResumeMCP extends McpAgent<Bindings, State, Props> {
 	}
 
 	private async getResumeData() {
+		// Check if there's a PDF URL configured
+		const pdfUrl = this.env.RESUME_PDF_URL as string | undefined;
+		
+		if (pdfUrl) {
+			// For now, just return your actual resume data
+			// TODO: In the future, we can add PDF parsing
+			console.log("PDF URL configured:", pdfUrl);
+			return this.getActualResumeData();
+		}
+
+		// Default resume data (for demo purposes)
 		return {
 			personalInfo: {
 				name: "Your Name",
@@ -112,34 +124,18 @@ export class ResumeMCP extends McpAgent<Bindings, State, Props> {
 				github: "https://github.com/yourusername",
 				website: "https://yourwebsite.com",
 			},
-			summary:
-				"Experienced software engineer with expertise in full-stack development, cloud technologies, and scalable system design.",
+			summary: "Experienced software engineer with expertise in full-stack development, cloud technologies, and scalable system design.",
 			experience: [
 				{
 					company: "Tech Company Inc.",
 					position: "Senior Software Engineer",
 					startDate: "2022-01",
 					current: true,
-					description:
-						"Lead development of cloud-native applications and microservices architecture",
+					description: "Lead development of cloud-native applications and microservices architecture",
 					achievements: [
 						"Designed and implemented scalable APIs serving 1M+ requests/day",
 						"Reduced deployment time by 80% through CI/CD automation",
 						"Mentored 5 junior developers and led cross-functional teams",
-					],
-				},
-				{
-					company: "Startup Inc.",
-					position: "Full Stack Developer",
-					startDate: "2020-06",
-					endDate: "2021-12",
-					current: false,
-					description:
-						"Developed web applications using React, Node.js, and AWS services",
-					achievements: [
-						"Built customer-facing dashboard with 99.9% uptime",
-						"Implemented real-time notifications using WebSocket technology",
-						"Optimized database queries reducing response time by 50%",
 					],
 				},
 			],
@@ -153,23 +149,9 @@ export class ResumeMCP extends McpAgent<Bindings, State, Props> {
 				},
 			],
 			skills: {
-				technical: [
-					"JavaScript",
-					"TypeScript",
-					"React",
-					"Node.js",
-					"Python",
-					"AWS",
-					"Docker",
-					"Kubernetes",
-					"PostgreSQL",
-					"MongoDB",
-				],
-				languages: ["English (Native)", "Spanish (Conversational)"],
-				certifications: [
-					"AWS Certified Solutions Architect",
-					"Google Cloud Professional Cloud Architect",
-				],
+				technical: ["JavaScript", "TypeScript", "React", "Node.js", "Python", "AWS", "Docker", "Kubernetes"],
+				languages: ["English (Native)"],
+				certifications: ["AWS Certified Solutions Architect"],
 			},
 			projects: [
 				{
@@ -179,12 +161,94 @@ export class ResumeMCP extends McpAgent<Bindings, State, Props> {
 					url: "https://npm.js/package/your-project",
 					github: "https://github.com/yourusername/your-project",
 				},
+			],
+		};
+	}
+
+	private getActualResumeData() {
+		return {
+			personalInfo: {
+				name: "Sharanya Reddy Charabuddi",
+				email: "sharanya_charabuddi@berkeley.edu",
+				phone: "4806584330",
+				location: "5006 Wellington Park Drive, Bay Area 95136, California",
+				linkedIn: "https://linkedin.com/in/sharanya-charabuddi",
+				github: "https://github.com/sharanyareddy9",
+				website: "https://sharanyacharabuddi.com",
+			},
+			summary: "Software engineering leader with 10+ years of experience transitioning into product management, with a strong foundation in AI/ML and enterprise SaaS.",
+			experience: [
 				{
-					name: "Personal Portfolio",
-					description: "A responsive web portfolio showcasing my projects and skills",
-					technologies: ["React", "Next.js", "Tailwind CSS"],
-					url: "https://yourwebsite.com",
-					github: "https://github.com/yourusername/portfolio",
+					company: "Apple",
+					position: "Senior Software Engineer",
+					startDate: "2020-10",
+					current: true,
+					location: "Cupertino",
+					description: "Working as part of the iCloud Education and Enterprise team, building solutions that enable Apple customers to have a consistent device experience",
+					achievements: [
+						"Part of the initial team that launched Apple Business Essentials, enabling IT administrators to deploy and manage devices across their organization",
+						"Responsible for devices data of Apple School Manager, Apple Business Manager UI and Engineering DRI for Device Enrollment Program",
+						"Collaborated across engineering, design, and product teams to help launch Apple Business Essentials",
+					],
+				},
+				{
+					company: "PayPal",
+					position: "Senior Software Engineer",
+					startDate: "2018-08",
+					endDate: "2020-10",
+					location: "San Jose",
+					current: false,
+					description: "Worked on Identity Experience team, developing core login backend services for web and mobile platforms",
+					achievements: [
+						"Developed features to improve PayPal mobile app login experience, which later called OneTouch feature",
+						"Worked closely with UX research and product teams to conduct A/B testing for frictionless login experience",
+					],
+				},
+				{
+					company: "PayPal",
+					position: "Software Engineer",
+					startDate: "2014-09",
+					endDate: "2018-08",
+					location: "San Jose",
+					current: false,
+					description: "Developed centralized monitoring tool for risk infrastructure team by gathering requirements directly from internal teams",
+					achievements: [
+						"Built custom dashboards using AngularJS to provide actionable insights for service-level monitoring",
+					],
+				},
+			],
+			education: [
+				{
+					institution: "UC Berkeley, Haas School of Business",
+					degree: "MBA",
+					field: "Business Administration",
+					year: "2023",
+				},
+				{
+					institution: "Arizona State University",
+					degree: "MS",
+					field: "Computer Science",
+					year: "2014",
+				},
+			],
+			skills: {
+				technical: ["System Architecture", "AI/ML", "Enterprise SaaS", "API Development", "Cloud Services"],
+				product: ["Product Strategy", "User Research", "Market Analysis", "OKR Planning"],
+				methodologies: ["Agile & Scrum", "JIRA", "Figma", "A/B Testing", "Product Analytics"],
+				certifications: ["Product Management - Indian School of Business", "Machine Learning - DeepLearning.AI & Stanford"],
+			},
+			projects: [
+				{
+					name: "Apple Business Essentials",
+					description: "Enterprise device management solution for Apple customers",
+					technologies: ["iOS", "macOS", "Enterprise APIs", "Device Management"],
+					company: "Apple",
+				},
+				{
+					name: "PayPal OneTouch",
+					description: "Frictionless login experience for PayPal mobile applications",
+					technologies: ["Mobile APIs", "Authentication", "A/B Testing"],
+					company: "PayPal",
 				},
 			],
 		};
