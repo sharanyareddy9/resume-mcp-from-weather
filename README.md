@@ -32,8 +32,8 @@ A configurable [Model Context Protocol (MCP)](https://modelcontextprotocol.com/)
 ### For Development/Testing
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/resume-mcp-from-weather.git
-cd resume-mcp-from-weather
+git clone https://github.com/your-username/resume-mcp-server.git
+cd resume-mcp-server
 
 # Install dependencies
 npm install
